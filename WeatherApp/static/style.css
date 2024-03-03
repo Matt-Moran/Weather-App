@@ -1,0 +1,107 @@
+body {
+    background-image: linear-gradient(navy, lightblue);
+    background-attachment: fixed;
+    margin: 100px 300px;
+    color: white;
+    font-family: garamond;
+}
+.pre-search {
+    margin: 25%;
+    text-align: center;
+    height: 300px;
+    color: white;
+}
+input[type=text] {
+    height: 40px;
+    width: 250px;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-family: garamond;
+    font-size: 20px;
+}
+input[type=submit] {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 15px;
+    font-family: garamond;
+    margin-bottom: 5px;
+}
+.main-container {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    color: black;
+}
+.addl-info-grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    padding: 10px;
+    color: black;
+}
+
+.grid-container > div, .addl-info-grid-container > div, .forecast-container > div, .scrollmenu > p{
+    text-align: center;
+    font-size: 30px;
+}
+
+.addl-info-grid-container > div, .forecast-container > div, .scrollmenu > p{
+    border: 1px solid black;
+}
+
+.location-title {
+    grid-column: 1 / 6;
+    border: 1px solid black;
+}
+.current-temp {
+    grid-column: 1 / 3;
+}
+.current-temp > p {
+    font-size: 50px;
+}
+.icon {
+    grid-column: 3 / 6;
+}
+.icon > img {
+    height: 100%;
+}
+.addl-info-title {
+    grid-column: 1 / 3;
+    padding: 10px;
+}
+.forecast-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    color: black;
+}
+.forecast-title {
+    grid-column: 1 / 4;
+}
+.forecast-title > h4{
+    padding: 5px;
+}
+.forecast-info {
+    font-size: 20px;
+}
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+.scrollmenu p {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 25px;
+    font-size: 25px;
+}

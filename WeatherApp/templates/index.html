@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='sun.webp') }}" />
+</head>
+<body>
+    {% if not weather_data%}
+    <div class="pre-search">
+        <h1>Where Would You Like to Travel Today?</h1>
+        <form action = "/" method = "post">
+            <input type="text" name="location" placeholder="Search for a location">
+            <input type="submit" value="Go">
+        </form>
+    </div>
+    {% endif %}
+    {% if weather_data and 'location' in weather_data and forecast%}
+    <form action = "/" method = "post">
+        <input type="text" name="location" placeholder="Search for a location">
+        <input type="submit" value="Go">
+    </form>
+    <div class="main-container">
+        <div class="grid-container">
+            <div class="location-title"><h3>{{weather_data['location']['name'] }}, {{weather_data['location']['region']}}, {{weather_data['location']['country']}} <div style="font-weight: normal; font-size: 18px;">as of {{weather_data['current']['last_updated']}}<div></div></h3></div>
+            <div class="current-temp"><p>{{ weather_data['current']['temp_f'] }}°F</p></div>
+            <div class="icon"><img src="{{weather_data['current']['condition']['icon']}}" alt="Weather Icon"></div>
+        </div>
+        <div class="addl-info-grid-container">
+            <div class="addl-info-title"><h4 style="margin: 5px;">Weather Today in {{weather_data['location']['name'] }}</h4></div>
+            <div><p>Feels Like: {{ weather_data['current']['feelslike_f'] }}°F</p></div>
+            <div><p>Wind: {{ weather_data['current']['wind_mph'] }} mph</p></div>
+            <div><p>Visibility: {{ weather_data['current']['vis_miles'] }} miles</p></div>
+            <div><p>Wind (direction): {{ weather_data['current']['wind_dir'] }}</p></div>
+            <div><p>Humidity: {{ weather_data['current']['humidity'] }}%</p></div>
+            <div><p>Precipitation: {{ weather_data['current']['precip_in'] }}</p></div>
+        </div>
+        <div class="addl-info-grid-container">
+            <div class="addl-info-title"><h4 style="margin: 5px;">Hourly Forecast</h4></div>
+        </div>
+        <div class="scrollmenu">
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][0]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][0]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][0]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][1]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][1]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][1]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][2]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][2]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][2]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][3]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][3]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][3]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][4]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][4]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][4]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][5]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][5]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][5]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][6]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][6]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][6]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][7]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][7]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][7]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][8]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][8]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][8]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][9]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][9]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][9]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][10]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][10]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][10]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][11]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][11]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][11]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][12]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][12]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][12]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][13]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][13]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][13]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][14]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][14]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][14]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][15]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][15]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][15]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][16]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][16]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][16]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][17]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][17]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][17]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][18]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][18]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][18]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][19]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][19]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][19]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][20]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][20]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][20]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][21]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][21]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][21]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][22]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][22]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][22]['temp_f']}}°F</p>
+            <p>{{format_time(forecast['forecast']['forecastday'][0]['hour'][23]['time'])}}<br><img src="{{forecast['forecast']['forecastday'][0]['hour'][23]['condition']['icon']}}" alt=""><br>{{forecast['forecast']['forecastday'][0]['hour'][23]['temp_f']}}°F</p>
+          </div>
+        <div class="forecast-container">
+            <div class="forecast-title"><h4 style="margin: 5px;">3-Day Forecast</h4></div>
+            <div><p>Tomorrow</p><img src="{{forecast['forecast']['forecastday'][0]['day']['condition']['icon']}}" alt="Weather-Icon"><p class="forecast-info">Low: {{forecast['forecast']['forecastday'][0]['day']['mintemp_f']}}°F&nbsp;&nbsp;&nbsp;&nbsp;High: {{forecast['forecast']['forecastday'][0]['day']['maxtemp_f']}}°F</p></div>
+            <div><p>{{format_date(forecast['forecast']['forecastday'][1]['date'])}}</p><img src="{{forecast['forecast']['forecastday'][1]['day']['condition']['icon']}}" alt="Weather-Icon"><p class="forecast-info">Low: {{forecast['forecast']['forecastday'][1]['day']['mintemp_f']}}°F&nbsp;&nbsp;&nbsp;&nbsp;High: {{forecast['forecast']['forecastday'][1]['day']['maxtemp_f']}}°F</p></div>
+            <div><p>{{format_date(forecast['forecast']['forecastday'][2]['date'])}}</p><img src="{{forecast['forecast']['forecastday'][2]['day']['condition']['icon']}}" alt="Weather-Icon"><p class="forecast-info">Low: {{forecast['forecast']['forecastday'][2]['day']['mintemp_f']}}°F&nbsp;&nbsp;&nbsp;&nbsp;High: {{forecast['forecast']['forecastday'][2]['day']['maxtemp_f']}}°F</p></div>
+        </div>
+    </div>
+    {% endif %}
+    {% if weather_data and 'location' not in weather_data %}
+    <div class="pre-search">
+        <h1>Not a registered location. Please try again.</h1>
+        <form action = "/" method = "post">
+            <input type="text" name="location" placeholder="Search for a location">
+            <input type="submit" value="Go">
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>
