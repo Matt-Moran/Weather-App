@@ -47,7 +47,8 @@ def mainPage():
       forecast = get_forecast(key, location)
    return render_template('index.html', weather_data = weather_data, forecast = forecast, format_date = format_date, format_time = format_time)
 
-#raw data
+#Raw data
+#Normally something like this would not be included on an actual site, but I kept it just to help visualize the data that is sent by the API
 @app.route('/alldata')
 def allData():
    return get_forecast(key, 'Boston')
