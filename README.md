@@ -1,5 +1,5 @@
 # Weather-App
-This application uses Flask to retrieve live weather data from an API (weatherapi.com) and display the data using HTML and CSS. The data is retrived using my personal key. If the key is expired when you are trying to request teh API, you can create your own on the site for free.
+This application uses Flask to retrieve live weather data from an API (weatherapi.com) and display the data using HTML and CSS. The data is retrived using my personal key. If the key is expired when you are trying to request the API, you can create your own key on the site (for free).
 <br><br>
 https://www.weatherapi.com/
 <br><br>
